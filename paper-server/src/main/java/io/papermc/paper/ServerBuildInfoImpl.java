@@ -30,7 +30,7 @@ public record ServerBuildInfoImpl(
     private static final String ATTRIBUTE_GIT_BRANCH = "Git-Branch";
     private static final String ATTRIBUTE_GIT_COMMIT = "Git-Commit";
 
-    private static final String BRAND_PAPER_NAME = "Paper";
+    private static final String BRAND_PAPER_NAME = "Cardboard";
 
     private static final String BUILD_DEV = "DEV";
 
@@ -43,8 +43,7 @@ public record ServerBuildInfoImpl(
             getManifestAttribute(manifest, ATTRIBUTE_BRAND_ID)
                 .map(Key::key)
                 .orElse(BRAND_PAPER_ID),
-            getManifestAttribute(manifest, ATTRIBUTE_BRAND_NAME)
-                .orElse(BRAND_PAPER_NAME),
+            BRAND_PAPER_NAME,
             SharedConstants.getCurrentVersion().id(),
             SharedConstants.getCurrentVersion().name(),
             getManifestAttribute(manifest, ATTRIBUTE_BUILD_NUMBER)
