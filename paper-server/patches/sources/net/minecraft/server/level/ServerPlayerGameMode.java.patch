@@ -189,7 +189,7 @@
              }
          }
      }
-@@ -235,36 +_,108 @@
+@@ -235,36 +_,114 @@
  
      public boolean destroyBlock(BlockPos pos) {
          BlockState blockState = this.level.getBlockState(pos);
@@ -254,6 +254,12 @@
 +                this.level.captureDrops = new java.util.ArrayList<>();
 +                // CraftBukkit end
                  BlockState blockState1 = block.playerWillDestroy(this.level, pos, blockState, this.player);
++
++                // Cardboard start
++                this.level.lastBlockBreaker = this.player;
++                this.level.lastBrokenPos = pos;
++                // Cardboard end
++
                  boolean flag = this.level.removeBlock(pos, false);
                  if (flag) {
                      block.destroy(this.level, pos, blockState1);

@@ -1,6 +1,25 @@
 --- a/net/minecraft/world/level/redstone/NeighborUpdater.java
 +++ b/net/minecraft/world/level/redstone/NeighborUpdater.java
-@@ -42,8 +_,26 @@
+@@ -37,13 +_,45 @@
+         BlockState blockState = level.getBlockState(pos);
+         if ((flags & 128) == 0 || !blockState.is(Blocks.REDSTONE_WIRE)) {
+             BlockState blockState1 = blockState.updateShape(level, level, pos, direction, neighborPos, neighborState, level.getRandom());
++
++            if (!blockState.isAir() && blockState1.isAir() && level instanceof net.minecraft.server.level.ServerLevel serverLevel) {
++                if (serverLevel.lastBlockBreaker != null) {
++                    org.bukkit.block.Block brokenBlock = org.bukkit.craftbukkit.block.CraftBlock.at(serverLevel, pos);
++                    org.bukkit.block.Block sourceBlock = org.bukkit.craftbukkit.block.CraftBlock.at(serverLevel, neighborPos);
++
++                    org.bukkit.craftbukkit.event.CraftEventFactory.callBlockBrokenByNeighbourEvent(
++                        ((net.minecraft.server.level.ServerPlayer) serverLevel.lastBlockBreaker).getBukkitEntity(),
++                        sourceBlock,
++                        brokenBlock
++                    );
++                }
++            }
++
+             Block.updateOrDestroy(blockState, blockState1, level, pos, flags, recursionLeft);
+         }
      }
  
      static void executeUpdate(Level level, BlockState state, BlockPos pos, Block neighborBlock, @Nullable Orientation orientation, boolean movedByPiston) {

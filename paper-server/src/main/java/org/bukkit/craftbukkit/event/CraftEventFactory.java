@@ -17,13 +17,13 @@ import java.util.stream.Stream;
 import io.papermc.paper.adventure.PaperAdventure;
 import io.papermc.paper.connection.HorriblePlayerLoginEventHack;
 import io.papermc.paper.connection.PlayerConnection;
+import io.papermc.paper.event.block.BlockBrokenByNeighborEvent;
 import io.papermc.paper.event.connection.PlayerConnectionValidateLoginEvent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ServerboundContainerClosePacket;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -2114,5 +2114,12 @@ public class CraftEventFactory {
         }
 
         return disconnectReason;
+    }
+
+    public static BlockBrokenByNeighborEvent callBlockBrokenByNeighbourEvent(Player player, Block sourceBlock,
+                                                                             Block brokenBlock) {
+        final BlockBrokenByNeighborEvent event = new BlockBrokenByNeighborEvent(player, sourceBlock, brokenBlock);
+        event.callEvent();
+        return event;
     }
 }
