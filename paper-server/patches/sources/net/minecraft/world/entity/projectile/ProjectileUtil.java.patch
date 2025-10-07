@@ -1,0 +1,28 @@
+--- a/net/minecraft/world/entity/projectile/ProjectileUtil.java
++++ b/net/minecraft/world/entity/projectile/ProjectileUtil.java
+@@ -25,14 +_,14 @@
+         Vec3 deltaMovement = projectile.getDeltaMovement();
+         Level level = projectile.level();
+         Vec3 vec3 = projectile.position();
+-        return getHitResult(vec3, projectile, filter, deltaMovement, level, computeMargin(projectile), ClipContext.Block.COLLIDER);
++        return getHitResult(vec3, projectile, filter, deltaMovement, level, DEFAULT_ENTITY_HIT_RESULT_MARGIN, ClipContext.Block.COLLIDER);
+     }
+ 
+     public static HitResult getHitResultOnMoveVector(Entity projectile, Predicate<Entity> filter, ClipContext.Block clipContext) {
+         Vec3 deltaMovement = projectile.getDeltaMovement();
+         Level level = projectile.level();
+         Vec3 vec3 = projectile.position();
+-        return getHitResult(vec3, projectile, filter, deltaMovement, level, computeMargin(projectile), clipContext);
++        return getHitResult(vec3, projectile, filter, deltaMovement, level, DEFAULT_ENTITY_HIT_RESULT_MARGIN, clipContext);
+     }
+ 
+     public static HitResult getHitResultOnViewVector(Entity projectile, Predicate<Entity> filter, double scale) {
+@@ -100,7 +_,7 @@
+ 
+     @Nullable
+     public static EntityHitResult getEntityHitResult(Level level, Projectile projectile, Vec3 startVec, Vec3 endVec, AABB boundingBox, Predicate<Entity> filter) {
+-        return getEntityHitResult(level, projectile, startVec, endVec, boundingBox, filter, computeMargin(projectile));
++        return getEntityHitResult(level, projectile, startVec, endVec, boundingBox, filter, DEFAULT_ENTITY_HIT_RESULT_MARGIN);
+     }
+ 
+     public static float computeMargin(Entity entity) {
