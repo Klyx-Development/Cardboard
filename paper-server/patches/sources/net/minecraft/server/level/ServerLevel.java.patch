@@ -9,7 +9,7 @@
      final EntityTickList entityTickList = new EntityTickList();
      private final ServerWaypointManager waypointManager;
      public final PersistentEntitySectionManager<Entity> entityManager;
-@@ -215,25 +_,170 @@
+@@ -215,25 +_,175 @@
      private final RandomSequences randomSequences;
      final LevelDebugSynchronizers debugSynchronizers = new LevelDebugSynchronizers(this);
  

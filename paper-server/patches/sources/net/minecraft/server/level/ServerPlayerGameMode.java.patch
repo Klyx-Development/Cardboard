@@ -190,7 +190,7 @@
              }
          }
      }
-@@ -255,17 +_,64 @@
+@@ -255,18 +_,71 @@
  
      public boolean destroyBlock(BlockPos pos) {
          BlockState blockState = this.level.getBlockState(pos);
@@ -263,6 +263,7 @@
 +
                  boolean flag = this.level.removeBlock(pos, false);
                  if (SharedConstants.DEBUG_BLOCK_BREAK) {
+                     LOGGER.info("server broke {} {} -> {}", pos, blockState1, this.level.getBlockState(pos));
 @@ -276,19 +_,44 @@
                      block.destroy(this.level, pos, blockState1);
                  }
